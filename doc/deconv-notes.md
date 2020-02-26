@@ -13,6 +13,14 @@ where $z_t \geq 0$ indicates the presence of a spike at the $t$-th timestep, and
 $$
 z_t \stackrel{iid}{\sim}Poisson(\lambda)
 $$
+Given the above model, the goal is to find the maximum a posteriori spike train, i.e., the most likely spike train, $\hat{n}$, given the fluorescence measurements, $\mathbf{F}$:
+$$
+\hat{z} = \text{argmax}P(z | y) = \text{argmax}\frac{1}{P(y)}P(y | z)P(z)
+$$
+and we have that $P(z | y) = \mathcal{N}(c + \epsilon, \sigma^2)$, $P(z) = Poisson(\lambda)$. Following through, we get that
+$$
+\hat{z} = \text{argmax} \sum_{t=1}^T-\frac{1}{2\sigma^2}(y_t - c_t - \epsilon_t)^2 + z_t\lambda
+$$
 
 ### Discrete Binning
 
